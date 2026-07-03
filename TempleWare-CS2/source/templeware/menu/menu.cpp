@@ -1,5 +1,6 @@
 #include "menu.h"
 #include "../config/config.h"
+#include "particles.h"
 
 #include <iostream>
 #include <vector>
@@ -194,6 +195,48 @@ void Menu::render() {
             ImGui::Checkbox("Custom FOV", &Config::fovEnabled);
             if (Config::fovEnabled) {
                 ImGui::SliderFloat("FOV Value##FovSlider", &Config::fov, 20.0f, 160.0f, "%1.0f");
+            }
+
+            ImGui::Spacing();
+            ImGui::Text("Particles");
+            ImGui::Separator();
+
+            ash_config_t& pcfg = features::particles_cfg;
+            ImGui::Checkbox("Enable##Particles", &pcfg.enabled);
+            if (pcfg.enabled) {
+                const char* particleTypes[] = { "Ash", "Snow", "Rain", "Stars", "Leaves" };
+                ImGui::Combo("Type##Particles", &pcfg.particle_type, particleTypes, IM_ARRAYSIZE(particleTypes));
+                ImGui::SliderInt("Count##Particles", &pcfg.count, 10, 500);
+                ImGui::SliderFloat("Speed##Particles", &pcfg.speed, 0.1f, 3.0f, "%.1f");
+                ImGui::SliderFloat("Radius##Particles", &pcfg.radius, 100.0f, 2000.0f, "%1.0f");
+                ImGui::SliderFloat("Turbulence##Particles", &pcfg.turbulence, 0.0f, 2.0f, "%.1f");
+                ImGui::SliderFloat("Wind X##Particles", &pcfg.wind_x, -30.0f, 30.0f, "%1.0f");
+                ImGui::SliderFloat("Wind Y##Particles", &pcfg.wind_y, -30.0f, 30.0f, "%1.0f");
+
+                switch (pcfg.particle_type) {
+                case 0:
+                    ImGui::SliderFloat("Glow##Particles", &pcfg.glow_intensity, 0.0f, 2.0f, "%.1f");
+                    ImGui::ColorEdit4("Debris##Particles", (float*)&pcfg.debris_color);
+                    ImGui::ColorEdit4("Ember Core##Particles", (float*)&pcfg.ember_core);
+                    ImGui::ColorEdit4("Ember Glow##Particles", (float*)&pcfg.ember_glow);
+                    break;
+                case 1:
+                    ImGui::ColorEdit4("Snow Color##Particles", (float*)&pcfg.snow_color);
+                    break;
+                case 2:
+                    ImGui::ColorEdit4("Rain Color##Particles", (float*)&pcfg.rain_color);
+                    break;
+                case 3:
+                    ImGui::SliderFloat("Glow##Particles", &pcfg.glow_intensity, 0.0f, 2.0f, "%.1f");
+                    ImGui::ColorEdit4("Star Color##Particles", (float*)&pcfg.star_color);
+                    ImGui::ColorEdit4("Star Glow##Particles", (float*)&pcfg.star_glow);
+                    break;
+                case 4:
+                    ImGui::ColorEdit4("Leaf A##Particles", (float*)&pcfg.leaf_color_a);
+                    ImGui::ColorEdit4("Leaf B##Particles", (float*)&pcfg.leaf_color_b);
+                    ImGui::ColorEdit4("Leaf C##Particles", (float*)&pcfg.leaf_color_c);
+                    break;
+                }
             }
 
             ImGui::EndChild();

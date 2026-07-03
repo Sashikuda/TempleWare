@@ -3,6 +3,7 @@
 #include "includes.h"
 #include "templeware/templeware.h"
 #include "templeware/renderer/icons.h"
+#include "templeware/menu/particles.h"
 
 #include "../external/kiero/minhook/include/MinHook.h"
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -72,6 +73,9 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 
     templeWare.renderer.menu.render();
     templeWare.renderer.hud.render();
+
+    // Ambient world particles (ash / snow / rain / stars / leaves)
+    features::particles.update_and_draw(features::particles_cfg);
 
     // Always call esp() to allow individual components to be rendered
     templeWare.renderer.visuals.esp();
