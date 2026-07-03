@@ -189,6 +189,7 @@
     <ClCompile Include="source\debug\debug.cpp" />
     <ClCompile Include="source\templeware\config\config.cpp" />
     <ClCompile Include="source\templeware\features\world\world.cpp" />
+    <ClCompile Include="source\templeware\features\world\skybox\skybox.cpp" />
     <ClCompile Include="source\templeware\hooks\hooks.cpp" />
     <ClCompile Include="source\templeware\keybinds\keybinds.cpp" />
     <ClCompile Include="source\templeware\menu\hud.cpp" />
@@ -240,6 +241,7 @@
     <ClInclude Include="source\templeware\features\aim\aim.h" />
     <ClInclude Include="source\templeware\features\chams\chams.h" />
     <ClInclude Include="source\templeware\features\movement\movement.h" />
+    <ClInclude Include="source\templeware\features\world\skybox\skybox.h" />
     <ClInclude Include="source\templeware\interfaces\CCSGOInput\CCSGOInput.h" />
     <ClInclude Include="source\templeware\interfaces\CGameEntitySystem\CGameEntitySystem.h" />
     <ClInclude Include="source\templeware\interfaces\CUserCmd\CUserCmd.h" />

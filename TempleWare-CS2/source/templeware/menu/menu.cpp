@@ -1,6 +1,7 @@
 #include "menu.h"
 #include "../config/config.h"
 #include "particles.h"
+#include "../features/world/skybox/skybox.h"
 
 #include <iostream>
 #include <vector>
@@ -195,6 +196,38 @@ void Menu::render() {
             ImGui::Checkbox("Custom FOV", &Config::fovEnabled);
             if (Config::fovEnabled) {
                 ImGui::SliderFloat("FOV Value##FovSlider", &Config::fov, 20.0f, 160.0f, "%1.0f");
+            }
+
+            ImGui::Spacing();
+            ImGui::Text("Skybox Changer");
+            ImGui::Separator();
+
+            {
+                sky_config_t& scfg = features::skybox_cfg;
+
+                ImGui::Combo("Map##Skybox", &scfg.selected_map, skybox::map_names(), skybox::map_count());
+
+                ImGui::Checkbox("Override Tint##Skybox", &scfg.override_tint);
+                if (scfg.override_tint) {
+                    ImGui::ColorEdit4("Tint Color##SkyboxTint", (float*)&scfg.tint);
+                }
+
+                ImGui::Checkbox("Override Brightness##Skybox", &scfg.override_brightness);
+                if (scfg.override_brightness) {
+                    ImGui::SliderFloat("Brightness##Skybox", &scfg.brightness, 0.0f, 4.0f, "%.2f");
+                }
+
+                // revision-driven: the transaction is only submitted on click,
+                // never once per rendered frame
+                if (ImGui::Button("Apply##Skybox")) {
+                    skybox::request_apply();
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Reset##Skybox")) {
+                    skybox::request_reset();
+                }
+
+                ImGui::TextDisabled("Status: %s", skybox::status());
             }
 
             ImGui::Spacing();
