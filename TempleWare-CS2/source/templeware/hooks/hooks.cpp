@@ -12,6 +12,7 @@
 #include "../features/chams/chams.h"
 #include "../features/world/skybox/skybox.h"
 #include "../features/world/world.h"
+#include "../features/chat/chat.h"
 
 #include "../../cs2/datatypes/cutlbuffer/cutlbuffer.h"
 #include "../../cs2/datatypes/keyvalues/keyvalues.h"
@@ -44,6 +45,9 @@ void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 
 		// re-apply as a safety net for locally simulated / offline smokes
 		world::on_frame();
+
+		// flushes queued client-side chat messages on the game thread
+		chat::on_frame();
 	}
 }
 
@@ -99,6 +103,9 @@ void H::Hooks::init() {
 	FrameStageNotify.Add((void*)M::patternScan("client", ("48 89 5C 24 ? 48 89 6C 24 ? 57 48 83 EC 40 48 8B F9 33 ED")), &hkFrameStageNotify);
 	DrawArray.Add((void*)M::patternScan("scenesystem", ("48 8B C4 53 57 41 54 48 81 EC D0 00 00 00 49 63 F9 49")), &chams::hook);
 	world::init();
+	chat::init();
+	// welcome message, printed once the local player is in-game
+	chat::push_prefixed("loaded, enjoy!");
 	DrawAggregate.Add((void*)M::patternScan("scenesystem", ("48 8B C4 48 89 50 ? 48 89 48 ? 55 53 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 70")), &world::hook);
 	GetRenderFov.Add((void*)M::patternScan("client", "40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 48 85 C0 74 ? 48 8B C8 48 83 C4"), &hkGetRenderFov);
 	LevelInit.Add((void*)M::patternScan("client", "40 55 56 41 56 48 8D 6C 24 ? 48 81 EC ? ? ? ? 48 8B 0D"), &hkLevelInit);

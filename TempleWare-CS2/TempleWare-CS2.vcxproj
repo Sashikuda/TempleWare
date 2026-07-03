@@ -188,6 +188,7 @@
     <ClCompile Include="source\templeware\interfaces\interfaces.cpp" />
     <ClCompile Include="source\debug\debug.cpp" />
     <ClCompile Include="source\templeware\config\config.cpp" />
+    <ClCompile Include="source\templeware\features\chat\chat.cpp" />
     <ClCompile Include="source\templeware\features\world\world.cpp" />
     <ClCompile Include="source\templeware\features\world\skybox\skybox.cpp" />
     <ClCompile Include="source\templeware\hooks\hooks.cpp" />
@@ -292,6 +293,7 @@
     <ClInclude Include="source\templeware\features\visuals\visuals.h" />
     <ClInclude Include="source\templeware\utils\schema\schema.h" />
     <ClInclude Include="source\templeware\features\world\skybox\skybox.h" />
+    <ClInclude Include="source\templeware\features\chat\chat.h" />
     <ClInclude Include="source\templeware\features\world\world.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
