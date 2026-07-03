@@ -20,7 +20,11 @@ namespace world
 	// Call once during hook initialization (scenesystem.dll must be loaded).
 	void init();
 
-	// Runs on the game thread (FrameStageNotify / FRAME_RENDER_END).
+	// Runs on the game thread (FrameStageNotify).
+	// Called at FRAME_NET_UPDATE_POSTDATAUPDATE_END so the recolor lands right
+	// after the networked m_vSmokeColor is applied but before the volumetric
+	// smoke effect samples it (required for online play), and again at
+	// FRAME_RENDER_END as a safety net for locally simulated smokes.
 	// Applies the smoke color to every active smoke grenade projectile.
 	void on_frame();
 
