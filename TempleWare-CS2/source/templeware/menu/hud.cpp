@@ -43,16 +43,16 @@ void Hud::render() {
     fpsStream << static_cast<int>(fps) << " FPS";
 
     // WaterMark
-    std::string watermarkText = "TempleWare | " + fpsStream.str() + " | " + timeBuffer;
+    std::string watermarkText = "REDLINE | " + fpsStream.str() + " | " + timeBuffer;
 
     ImVec2 textSize = ImGui::CalcTextSize(watermarkText.c_str());
     float padding = 5.0f;
     ImVec2 pos = ImVec2(10, 10);
     ImVec2 rectSize = ImVec2(textSize.x + padding * 2, textSize.y + padding * 2);
 
-    ImU32 bgColor = IM_COL32(50, 50, 50, 200);
-    ImU32 borderColor = IM_COL32(153, 76, 204, 255);
-    ImU32 textColor = IM_COL32(255, 255, 255, 255);
+    ImU32 bgColor = IM_COL32(18, 18, 18, 200);
+    ImU32 borderColor = IM_COL32(217, 217, 217, 255);
+    ImU32 textColor = IM_COL32(242, 242, 242, 255);
 
     ImDrawList* drawList = ImGui::GetBackgroundDrawList();
 

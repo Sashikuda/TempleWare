@@ -15,41 +15,43 @@ void ApplyImGuiTheme() {
     ImGuiStyle& style = ImGui::GetStyle();
     ImVec4* colors = style.Colors;
 
-    ImVec4 primaryColor = ImVec4(0.44f, 0.23f, 0.78f, 1.0f);
-    ImVec4 outlineColor = ImVec4(0.54f, 0.33f, 0.88f, 0.7f);
+    // REDLINE theme - white / grey / black
+    ImVec4 primaryColor = ImVec4(0.85f, 0.85f, 0.85f, 1.0f);   // light grey
+    ImVec4 outlineColor = ImVec4(0.45f, 0.45f, 0.45f, 0.7f);   // mid grey outline
 
-    colors[ImGuiCol_WindowBg] = ImVec4(0.11f, 0.11f, 0.13f, 1.0f);
+    colors[ImGuiCol_WindowBg] = ImVec4(0.07f, 0.07f, 0.07f, 1.0f);
     colors[ImGuiCol_Border] = ImVec4(0.30f, 0.30f, 0.30f, 1.0f);
-    colors[ImGuiCol_FrameBg] = ImVec4(0.11f, 0.11f, 0.13f, 1.0f);
-    colors[ImGuiCol_FrameBgHovered] = ImVec4(0.15f, 0.15f, 0.18f, 1.0f);
-    colors[ImGuiCol_FrameBgActive] = ImVec4(0.15f, 0.15f, 0.18f, 1.0f);
-    colors[ImGuiCol_TitleBg] = ImVec4(0.11f, 0.11f, 0.13f, 1.0f);
-    colors[ImGuiCol_TitleBgActive] = ImVec4(0.11f, 0.11f, 0.13f, 1.0f);
-    colors[ImGuiCol_PopupBg] = ImVec4(0.11f, 0.11f, 0.13f, 1.0f);
+    colors[ImGuiCol_FrameBg] = ImVec4(0.12f, 0.12f, 0.12f, 1.0f);
+    colors[ImGuiCol_FrameBgHovered] = ImVec4(0.18f, 0.18f, 0.18f, 1.0f);
+    colors[ImGuiCol_FrameBgActive] = ImVec4(0.22f, 0.22f, 0.22f, 1.0f);
+    colors[ImGuiCol_TitleBg] = ImVec4(0.07f, 0.07f, 0.07f, 1.0f);
+    colors[ImGuiCol_TitleBgActive] = ImVec4(0.07f, 0.07f, 0.07f, 1.0f);
+    colors[ImGuiCol_PopupBg] = ImVec4(0.09f, 0.09f, 0.09f, 1.0f);
 
-    colors[ImGuiCol_Button] = primaryColor;
-    colors[ImGuiCol_ButtonHovered] = ImVec4(0.54f, 0.33f, 0.88f, 1.0f);
-    colors[ImGuiCol_ButtonActive] = ImVec4(0.34f, 0.13f, 0.68f, 1.0f);
+    colors[ImGuiCol_Button] = ImVec4(0.20f, 0.20f, 0.20f, 1.0f);
+    colors[ImGuiCol_ButtonHovered] = ImVec4(0.30f, 0.30f, 0.30f, 1.0f);
+    colors[ImGuiCol_ButtonActive] = ImVec4(0.85f, 0.85f, 0.85f, 1.0f);
 
-    colors[ImGuiCol_CheckMark] = ImVec4(0.80f, 0.50f, 1.00f, 1.0f);
+    colors[ImGuiCol_CheckMark] = ImVec4(1.00f, 1.00f, 1.00f, 1.0f);
     colors[ImGuiCol_SliderGrab] = primaryColor;
-    colors[ImGuiCol_SliderGrabActive] = ImVec4(0.54f, 0.33f, 0.88f, 1.0f);
+    colors[ImGuiCol_SliderGrabActive] = ImVec4(1.00f, 1.00f, 1.00f, 1.0f);
 
-    colors[ImGuiCol_Header] = primaryColor;
-    colors[ImGuiCol_HeaderHovered] = ImVec4(0.54f, 0.33f, 0.88f, 1.0f);
-    colors[ImGuiCol_HeaderActive] = ImVec4(0.34f, 0.13f, 0.68f, 1.0f);
+    colors[ImGuiCol_Header] = ImVec4(0.25f, 0.25f, 0.25f, 1.0f);
+    colors[ImGuiCol_HeaderHovered] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
+    colors[ImGuiCol_HeaderActive] = ImVec4(0.45f, 0.45f, 0.45f, 1.0f);
 
-    colors[ImGuiCol_Separator] = ImVec4(0.34f, 0.13f, 0.68f, 1.0f);
+    colors[ImGuiCol_Separator] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
     colors[ImGuiCol_SeparatorHovered] = primaryColor;
-    colors[ImGuiCol_SeparatorActive] = ImVec4(0.54f, 0.33f, 0.88f, 1.0f);
+    colors[ImGuiCol_SeparatorActive] = ImVec4(1.00f, 1.00f, 1.00f, 1.0f);
 
-    colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
+    colors[ImGuiCol_Text] = ImVec4(0.95f, 0.95f, 0.95f, 1.00f);
+    colors[ImGuiCol_TextDisabled] = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);
 
-    colors[ImGuiCol_Tab] = ImVec4(0.17f, 0.17f, 0.21f, 1.0f);
-    colors[ImGuiCol_TabHovered] = ImVec4(0.44f, 0.23f, 0.78f, 0.8f);
-    colors[ImGuiCol_TabActive] = primaryColor;
-    colors[ImGuiCol_TabUnfocused] = ImVec4(0.17f, 0.17f, 0.21f, 1.0f);
-    colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.34f, 0.13f, 0.68f, 1.0f);
+    colors[ImGuiCol_Tab] = ImVec4(0.13f, 0.13f, 0.13f, 1.0f);
+    colors[ImGuiCol_TabHovered] = ImVec4(0.40f, 0.40f, 0.40f, 0.8f);
+    colors[ImGuiCol_TabActive] = ImVec4(0.30f, 0.30f, 0.30f, 1.0f);
+    colors[ImGuiCol_TabUnfocused] = ImVec4(0.13f, 0.13f, 0.13f, 1.0f);
+    colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.22f, 0.22f, 0.22f, 1.0f);
 
     colors[ImGuiCol_Border] = outlineColor;
     colors[ImGuiCol_BorderShadow] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -103,16 +105,16 @@ void Menu::render() {
         ImGui::SetNextWindowSize(ImVec2(600, 400), ImGuiCond_Once);
         ImGui::SetNextWindowPos(ImVec2(50, 50), ImGuiCond_Once);
 
-        ImGui::Begin("TempleWare | Internal", nullptr, window_flags);
+        ImGui::Begin("REDLINE | Internal", nullptr, window_flags);
 
         {
             float windowWidth = ImGui::GetWindowWidth();
-            float rightTextWidth = ImGui::CalcTextSize("templecheats.xyz | Updated by PasatAlexDis1").x;
+            float rightTextWidth = ImGui::CalcTextSize("Internal").x;
 
-            ImGui::Text("TempleWare - Internal");
+            ImGui::Text("REDLINE");
 
             ImGui::SameLine(windowWidth - rightTextWidth - 10);
-            ImGui::Text("templecheats.xyz | Updated by PasatAlexDis1");
+            ImGui::Text("Internal");
         }
 
         ImGui::Separator();
