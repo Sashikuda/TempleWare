@@ -292,6 +292,7 @@
     <ClInclude Include="source\templeware\features\visuals\visuals.h" />
     <ClInclude Include="source\templeware\utils\schema\schema.h" />
     <ClInclude Include="source\templeware\features\world\skybox\skybox.h" />
+    <ClInclude Include="source\templeware\features\world\world.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

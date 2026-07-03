@@ -17,10 +17,12 @@ namespace H {
 	void __fastcall hkChamsObject(void* pAnimatableSceneObjectDesc, void* pDx11, CMeshData* arrMeshDraw, int nDataCount, void* pSceneView, void* pSceneLayer, void* pUnk, void* pUnk2);
 	void __fastcall hkRenderFlashbangOverlay(void* a1, void* a2, void* a3, void* a4, void* a5);
 	void __fastcall hkCreateMove(CCSGOInput* rcx, int slot, bool active);
+	void* __fastcall hkDrawAggregate(void* a1, void* a2, C_AggregateSceneObject* data);
 	inline float g_flActiveFov;
 	float hkGetRenderFov(void* rcx);
 
 	inline CInlineHookObj<decltype(&hkChamsObject)> DrawArray = { };
+	inline CInlineHookObj<decltype(&hkDrawAggregate)> DrawAggregate = { };
 	inline CInlineHookObj<decltype(&hkFrameStageNotify)> FrameStageNotify = { };
 	inline CInlineHookObj<decltype(&hkGetRenderFov)> GetRenderFov = { };
 	inline CInlineHookObj<decltype(&hkLevelInit)> LevelInit = { };

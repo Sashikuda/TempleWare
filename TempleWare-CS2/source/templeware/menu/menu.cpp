@@ -193,6 +193,16 @@ void Menu::render() {
                 ImGui::ColorEdit4("Night Color", (float*)&Config::NightColor);
             }
 
+            ImGui::Checkbox("World Color", &Config::modulateWorld);
+            if (Config::modulateWorld) {
+                ImGui::ColorEdit4("World Color##WorldColor", (float*)&Config::worldColor);
+            }
+
+            ImGui::Checkbox("Smoke Color", &Config::modulateSmoke);
+            if (Config::modulateSmoke) {
+                ImGui::ColorEdit4("Smoke Color##SmokeColor", (float*)&Config::smokeColor);
+            }
+
             ImGui::Checkbox("Custom FOV", &Config::fovEnabled);
             if (Config::fovEnabled) {
                 ImGui::SliderFloat("FOV Value##FovSlider", &Config::fov, 20.0f, 160.0f, "%1.0f");

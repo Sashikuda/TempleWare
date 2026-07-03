@@ -43,6 +43,12 @@ namespace Config {
 
 	ImVec4 NightColor = ImVec4(0.1, 0.1, 0.1, 1);
 
+	bool modulateWorld = false;
+	ImVec4 worldColor = ImVec4(1, 1, 1, 1);
+
+	bool modulateSmoke = false;
+	ImVec4 smokeColor = ImVec4(1, 1, 1, 1);
+
 	bool aimbot = 0;
 	float aimbot_fov = 0;
 	bool team_check = false;
