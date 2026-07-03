@@ -10,6 +10,7 @@
 #include "../players/hook/playerHook.h"
 #include "../features/visuals/visuals.h"
 #include "../features/chams/chams.h"
+#include "../features/world/skybox/skybox.h"
 
 #include "../../cs2/datatypes/cutlbuffer/cutlbuffer.h"
 #include "../../cs2/datatypes/keyvalues/keyvalues.h"
@@ -29,6 +30,9 @@ void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 		Esp::cache();
 
 		Aimbot();
+
+		// processes pending skybox Apply / Reset transactions on the game thread
+		skybox::on_frame();
 	}
 }
 
