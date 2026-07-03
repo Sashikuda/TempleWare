@@ -1,0 +1,51 @@
+# Visual Studio cache and user-specific files
+.vs/
+*.user
+*.suo
+*.rsuser
+*.VC.db
+*.VC.opendb
+*.VC.VC.opendb
+
+# Build outputs
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+/[Dd]ebug/
+/[Dd]ebugPublic/
+/[Rr]elease/
+/[Rr]eleases/
+TempleWare-CS2/[Dd]ebug/
+TempleWare-CS2/[Dd]ebugPublic/
+TempleWare-CS2/[Rr]elease/
+TempleWare-CS2/[Rr]eleases/
+
+# Compiler/linker intermediates
+*.obj
+*.iobj
+*.ipdb
+*.pdb
+*.idb
+*.ilk
+*.lastbuildstate
+*.tlog
+*.log
+*.recipe
+*.cache
+*.aps
+*.ncb
+*.sdf
+*.opensdf
+
+# Generated binaries/maps
+*.exe
+*.dll
+*.lib
+*.exp
+*.map
+
+# OS/editor noise
+Thumbs.db
+.DS_Store
+.vscode/
