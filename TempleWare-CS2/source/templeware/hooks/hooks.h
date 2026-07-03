@@ -10,6 +10,7 @@
 // Forward declaration
 class CMeshData;
 class CEntityIdentity;
+class CViewSetup;
 
 namespace H {
 	void __fastcall hkFrameStageNotify(void* a1, int stage);
@@ -20,11 +21,14 @@ namespace H {
 	void* __fastcall hkDrawAggregate(void* a1, void* a2, C_AggregateSceneObject* data);
 	inline float g_flActiveFov;
 	float hkGetRenderFov(void* rcx);
+	// CViewRender::GetMatricesForView - used to remove visual recoil (camera kick)
+	void __fastcall hkGetMatricesForView(void* rcx, CViewSetup* pSetup, void* pWorldToView, void* pViewToProjection, void* pWorldToProjection, void* pWorldToPixels);
 
 	inline CInlineHookObj<decltype(&hkChamsObject)> DrawArray = { };
 	inline CInlineHookObj<decltype(&hkDrawAggregate)> DrawAggregate = { };
 	inline CInlineHookObj<decltype(&hkFrameStageNotify)> FrameStageNotify = { };
 	inline CInlineHookObj<decltype(&hkGetRenderFov)> GetRenderFov = { };
+	inline CInlineHookObj<decltype(&hkGetMatricesForView)> GetMatricesForView = { };
 	inline CInlineHookObj<decltype(&hkLevelInit)> LevelInit = { };
 	inline CInlineHookObj<decltype(&hkRenderFlashbangOverlay)> RenderFlashBangOverlay = { };
 	inline CInlineHookObj<decltype(&hkCreateMove)> CreateMove = { };

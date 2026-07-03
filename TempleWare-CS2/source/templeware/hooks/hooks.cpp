@@ -109,6 +109,8 @@ void H::Hooks::init() {
 	chat::init();
 	DrawAggregate.Add((void*)M::patternScan("scenesystem", ("48 8B C4 48 89 50 ? 48 89 48 ? 55 53 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 70")), &world::hook);
 	GetRenderFov.Add((void*)M::patternScan("client", "40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 48 85 C0 74 ? 48 8B C8 48 83 C4"), &hkGetRenderFov);
+	// CViewRender::GetMatricesForView - no visual recoil (see features/visuals/novisualrecoil)
+	GetMatricesForView.Add((void*)M::patternScan("client", "40 53 48 81 EC ? ? ? ? 49 8B C1"), &hkGetMatricesForView);
 	LevelInit.Add((void*)M::patternScan("client", "40 55 56 41 56 48 8D 6C 24 ? 48 81 EC ? ? ? ? 48 8B 0D"), &hkLevelInit);
 	RenderFlashBangOverlay.Add((void*)M::patternScan("client", ("85 D2 0F 88 ? ? ? ? 48 89 4C 24 ? 55 56")), &hkRenderFlashbangOverlay);
 

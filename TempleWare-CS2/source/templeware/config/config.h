@@ -52,6 +52,7 @@ namespace Config {
 	extern float aimbot_fov;
 	extern bool team_check;
 	extern bool rcs;
+	extern bool no_visual_recoil;
 	extern bool fov_circle;
 	extern ImVec4 fovCircleColor;
 
