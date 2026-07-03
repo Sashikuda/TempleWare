@@ -1,6 +1,7 @@
 #include "menu.h"
 #include "../config/config.h"
 #include "particles.h"
+#include "../features/world/skybox/skybox.h"
 
 #include <iostream>
 #include <vector>
@@ -292,10 +293,37 @@ void Menu::render() {
 
             ImGui::SameLine();
             ImGui::BeginChild("MiscRight", ImVec2(0, 0), true);
-            ImGui::Text("Other");
+            ImGui::Text("Skybox Changer");
             ImGui::Separator();
 
-            ImGui::Text("No additional settings");
+            {
+                sky_config_t& scfg = features::skybox_cfg;
+
+                ImGui::Combo("Map##Skybox", &scfg.selected_map, skybox::map_names(), skybox::map_count());
+
+                ImGui::Checkbox("Override Tint##Skybox", &scfg.override_tint);
+                if (scfg.override_tint) {
+                    ImGui::ColorEdit4("Tint##Skybox", (float*)&scfg.tint);
+                }
+
+                ImGui::Checkbox("Override Brightness##Skybox", &scfg.override_brightness);
+                if (scfg.override_brightness) {
+                    ImGui::SliderFloat("Brightness##Skybox", &scfg.brightness, 0.0f, 5.0f, "%.2f");
+                }
+
+                ImGui::Spacing();
+
+                if (ImGui::Button("Apply##Skybox")) {
+                    skybox::request_apply();
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Reset##Skybox")) {
+                    skybox::request_reset();
+                }
+
+                ImGui::Spacing();
+                ImGui::TextWrapped("Status: %s", skybox::status());
+            }
 
             ImGui::EndChild();
         }
