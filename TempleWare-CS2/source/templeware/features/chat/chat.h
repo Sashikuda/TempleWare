@@ -24,10 +24,11 @@ namespace chat
 	// Supports <font color="#RRGGBB"> tags.
 	void push(const std::string& text);
 
-	// Convenience helper: prints "[TempleWare] <text>" with the branded prefix.
+	// Convenience helper: prints "[REDLINE] <text>" with the branded prefix.
 	void push_prefixed(const std::string& text);
 
-	// Runs on the game thread (FrameStageNotify / FRAME_RENDER_END).
-	// Flushes queued messages once the local player is in-game.
+	// Runs on the game thread (FrameStageNotify / FRAME_RENDER_END), including
+	// out of game. Detects every out-of-game -> in-game transition and prints
+	// the REDLINE welcome message, then flushes queued messages while in-game.
 	void on_frame();
 }

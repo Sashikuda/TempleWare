@@ -45,10 +45,13 @@ void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 
 		// re-apply as a safety net for locally simulated / offline smokes
 		world::on_frame();
-
-		// flushes queued client-side chat messages on the game thread
-		chat::on_frame();
 	}
+
+	// runs on every FRAME_RENDER_END (even out of game) so the game-join
+	// detection can reset between matches; flushes queued chat messages
+	// on the game thread once in-game
+	if (stage == FRAME_RENDER_END)
+		chat::on_frame();
 }
 
 void* __fastcall H::hkLevelInit(__int64 a1, __int64 a2) {
@@ -104,8 +107,6 @@ void H::Hooks::init() {
 	DrawArray.Add((void*)M::patternScan("scenesystem", ("48 8B C4 53 57 41 54")), &chams::hook);
 	world::init();
 	chat::init();
-	// welcome message, printed once the local player is in-game
-	chat::push_prefixed("loaded, enjoy!");
 	DrawAggregate.Add((void*)M::patternScan("scenesystem", ("48 8B C4 48 89 50 ? 48 89 48 ? 55 53 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 70")), &world::hook);
 	GetRenderFov.Add((void*)M::patternScan("client", "40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 48 85 C0 74 ? 48 8B C8 48 83 C4"), &hkGetRenderFov);
 	LevelInit.Add((void*)M::patternScan("client", "40 55 56 41 56 48 8D 6C 24 ? 48 81 EC ? ? ? ? 48 8B 0D"), &hkLevelInit);

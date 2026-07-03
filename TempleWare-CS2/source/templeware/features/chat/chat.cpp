@@ -68,7 +68,7 @@ void chat::push(const std::string& text)
 
 void chat::push_prefixed(const std::string& text)
 {
-	push(std::string("<font color=\"#8FD8FF\">[TempleWare]</font> ") + text);
+	push(std::string("<font color=\"#FF2A2A\">[REDLINE]</font> ") + text);
 }
 
 // -----------------------------------------------------------------------------
@@ -79,8 +79,17 @@ void chat::on_frame()
 	if (!g_push_notice || !g_find_hud_element)
 		return;
 
+	const bool inGame = I::EngineClient && I::EngineClient->valid();
+
+	// welcome message: fired on every out-of-game -> in-game transition,
+	// so the player sees it each time they join a new game
+	static bool wasInGame = false;
+	if (inGame && !wasInGame)
+		push("<font color=\"#FF2A2A\">REDLINE</font> <font color=\"#E8E8E8\">| best internal solution for CS2</font>");
+	wasInGame = inGame;
+
 	// the HUD only exists while in-game; keep messages queued until then
-	if (!I::EngineClient || !I::EngineClient->valid())
+	if (!inGame)
 		return;
 
 	std::vector<std::string> pending;
