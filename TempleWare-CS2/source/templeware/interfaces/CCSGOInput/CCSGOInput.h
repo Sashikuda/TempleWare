@@ -69,7 +69,7 @@ public:
 			return nullptr;
 
 		typedef uintptr_t(__fastcall* get_local_controller_by_internal_id_fn)(int);
-		static get_local_controller_by_internal_id_fn get_local_controller_by_internal_id = (get_local_controller_by_internal_id_fn)M::scan("client.dll", "48 83 EC ?? 83 F9 ?? 75 ?? 48 8B 0D ?? ?? ?? ?? 48 8D 54 24 ?? 48 8B 01 FF 90 ?? ?? ?? ?? 8B 08 48 63 C1 48 8D 0D ?? ?? ?? ?? 48 8B 04 C1 48 83 C4 ?? C3 CC CC CC CC CC CC CC CC CC CC CC CC CC 48 83 EC ?? 83 F9");
+		static get_local_controller_by_internal_id_fn get_local_controller_by_internal_id = (get_local_controller_by_internal_id_fn)M::scan("client.dll", "48 83 EC ? 83 F9 ? 75 ? 48 8B 0D ? ? ? ? 48 8D 54 24 ? ? ? ? FF 90 ? ? ? ? ? ? 48 63 C1 48 8D 0D ? ? ? ? ? ? ? ? 48 83 C4 ? C3 ? ? ? ? ? ? ? ? ? ? ? ? ? 48 83 EC ? 83 F9");
 		typedef uintptr_t(__fastcall* setup_cmd_fn)(uintptr_t);
 		static setup_cmd_fn setup_cmd = (setup_cmd_fn)M::scan("client.dll", "48 83 EC 28 E8 ?? ?? ?? ?? 8B 80");
 		typedef uintptr_t(__fastcall* get_controller_cmd_fn)(uintptr_t, uintptr_t);
@@ -95,11 +95,11 @@ public:
 	}
 
 
-	// 4C 8B C1 85 D2 74 08 48 8D 05 ? ? ? ? C3
+	// 4C 8B C1 85 D2 74 ? 48 8D 05
 	Vector_t GetViewAngles()
 	{
 		using fnGetViewAngles = std::int64_t(_fastcall*)(CCSGOInput*, std::int32_t);
-		static auto oGetViewAngles = reinterpret_cast<fnGetViewAngles>(M::FindPattern("client", ("4C 8B C1 85 D2 74 08 48 8D 05 ? ? ? ? C3")));
+		static auto oGetViewAngles = reinterpret_cast<fnGetViewAngles>(M::FindPattern("client", ("4C 8B C1 85 D2 74 ? 48 8D 05")));
 
 		return *reinterpret_cast<Vector_t*>(oGetViewAngles(this, 0));
 	}

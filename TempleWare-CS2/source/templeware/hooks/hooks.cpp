@@ -82,7 +82,7 @@ void __fastcall H::hkCreateMove(CCSGOInput* rcx, int slot, bool active)
 void H::Hooks::init() {
 
 	oGetWeaponData = *reinterpret_cast<int*>(M::patternScan("client", ("48 8B 81 ? ? ? ? 85 D2 78 ? 48 83 FA ? 73 ? F3 0F 10 84 90 ? ? ? ? C3 F3 0F 10 80 ? ? ? ? C3 CC CC CC CC")) + 0x3);
-	ogGetBaseEntity = reinterpret_cast<decltype(ogGetBaseEntity)>(M::patternScan("client", ("4C 8D 49 10 81 FA FE 7F 00 00 ? ? 8B CA C1 F9 09 83 F9 3F ? ? 48 63 C1 4D"))); // String: Found no entity at %d.\n and Press Double Click on v4 and then on Return.
+	ogGetBaseEntity = reinterpret_cast<decltype(ogGetBaseEntity)>(M::patternScan("client", ("4C 8D 49 ? 81 FA"))); // GETENTITYBYINDEX - String: Found no entity at %d.\n
 	oGetLocalPlayer = reinterpret_cast<decltype(oGetLocalPlayer)>(M::getAbsoluteAddress(M::patternScan("client", "e8 ? ? ? ? 48 8b f8 48 85 c0 0f 84 ? ? ? ? 48 8b 10 48 8b c8 ff 92 ? ? ? ? 84 c0 0f 84 ? ? ? ? 48 8b 17 48 8b cf ff 92 ? ? ? ? 84 c0 0f 84 ? ? ? ? 48 8b 07"), 1)); // Under Autobuy "; STR:
 
 	if (I::Input)
@@ -100,8 +100,8 @@ void H::Hooks::init() {
 		}
 	}
 
-	FrameStageNotify.Add((void*)M::patternScan("client", ("48 89 5C 24 ? 48 89 6C 24 ? 57 48 83 EC 40 48 8B F9 33 ED")), &hkFrameStageNotify);
-	DrawArray.Add((void*)M::patternScan("scenesystem", ("48 8B C4 53 57 41 54 48 81 EC D0 00 00 00 49 63 F9 49")), &chams::hook);
+	FrameStageNotify.Add((void*)M::patternScan("client", ("48 89 5C 24 ? 48 89 6C 24 ? 57 48 83 EC ? 48 8B F9 33 ED")), &hkFrameStageNotify);
+	DrawArray.Add((void*)M::patternScan("scenesystem", ("48 8B C4 53 57 41 54")), &chams::hook);
 	world::init();
 	chat::init();
 	// welcome message, printed once the local player is in-game
