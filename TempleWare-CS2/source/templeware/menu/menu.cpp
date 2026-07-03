@@ -286,6 +286,7 @@ void Menu::render() {
             ImGui::Separator();
 
             ImGui::Checkbox("Anti Flash", &Config::antiflash);
+            ImGui::Checkbox("No Visual Recoil", &Config::no_visual_recoil);
 
             ImGui::EndChild();
         }

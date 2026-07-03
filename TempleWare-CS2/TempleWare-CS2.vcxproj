@@ -184,6 +184,7 @@
     <ClCompile Include="source\templeware\features\movement\movement.cpp" />
     <ClCompile Include="source\templeware\features\visuals\antiflash\antiflash.cpp" />
     <ClCompile Include="source\templeware\features\visuals\fov\fov.cpp" />
+    <ClCompile Include="source\templeware\features\visuals\novisualrecoil\novisualrecoil.cpp" />
     <ClCompile Include="source\templeware\interfaces\CGameEntitySystem\CGameEntitySystem.cpp" />
     <ClCompile Include="source\templeware\interfaces\interfaces.cpp" />
     <ClCompile Include="source\debug\debug.cpp" />
