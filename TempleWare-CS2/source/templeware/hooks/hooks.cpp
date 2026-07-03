@@ -26,6 +26,13 @@ void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 {
 	FrameStageNotify.GetOriginal()(a1, stage);
 
+	// Overwrite smoke color right after the client applies networked values but
+	// BEFORE the volumetric smoke effect samples it during rendering. Online the
+	// server sends its own m_vSmokeColor every update, so writing only at
+	// FRAME_RENDER_END is too late and the recolor never applies.
+	if (stage == FRAME_NET_UPDATE_POSTDATAUPDATE_END)
+		world::on_frame();
+
 	// frame_render_stage | 9
 	if (stage == FRAME_RENDER_END && oGetLocalPlayer(0)) {
 		Esp::cache();
@@ -35,7 +42,7 @@ void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 		// processes pending skybox Apply / Reset transactions on the game thread
 		skybox::on_frame();
 
-		// applies smoke color to active smoke grenade projectiles
+		// re-apply as a safety net for locally simulated / offline smokes
 		world::on_frame();
 	}
 }
